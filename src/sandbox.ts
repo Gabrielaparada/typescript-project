@@ -1,1 +1,1 @@
-console.log('2hhhhh2!')
+console.log('')
