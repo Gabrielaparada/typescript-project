@@ -25,15 +25,20 @@ form.addEventListener('submit', (e: Event)=> {
     e.preventDefault()
     let doc: HasFormatter
 
+    //defining tuple
+    let values: [string, string, number]
+    //passing values 
+    values = [toFrom.value, details.value, amount.valueAsNumber]
+
     //checking the type value to render either invoice or payment
     if (types.value === 'invoice') {
-        doc = new Invoice(toFrom.value, details.value, amount.valueAsNumber)
+        doc = new Invoice(...values)
     } else {
-        doc = new Payment (toFrom.value, details.value, amount.valueAsNumber)
+        // we can spread the tuple directly and avoid robust repetitive code
+        doc = new Payment(...values)
+        // doc = new Payment (toFrom.value, details.value, amount.valueAsNumber)
     }
     //using instance to access render method and  display content on the page
     list.render(doc, types.value, 'end')
 
 })
-
-
